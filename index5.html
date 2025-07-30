@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hiba's Surprise Journey 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff0f5;
+      color: #333;
+    }
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    h1, .top-text {
+      font-family: 'Great Vibes', cursive;
+      font-size: 36px;
+      color: #e91e63;
+      margin-bottom: 20px;
+    }
+    .countdown {
+      font-size: 64px;
+      color: #ff1744;
+      animation: glow 1s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff4081; }
+      to { text-shadow: 0 0 20px #f50057; }
+    }
+    .button {
+      padding: 12px 28px;
+      margin-top: 30px;
+      font-size: 16px;
+      background-color: #d50000;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+    .button:hover {
+      background-color: #b71c1c;
+      transform: scale(1.05);
+    }
+    .letter-box {
+      max-width: 500px;
+      background-color: #f44336;
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .letter-content {
+      margin-top: 20px;
+      display: none;
+      white-space: pre-wrap;
+      color: #fffde7;
+      font-size: 16px;
+    }
+    .letter-box.open .letter-content {
+      display: block;
+    }
+    .quote {
+      margin-top: 15px;
+      font-size: 1.3rem;
+      color: #a52a84;
+      font-weight: bold;
+    }
+    .final-message {
+      font-size: 1.6rem;
+      color: #6a1b9a;
+      background-color: #fff0f6;
+      padding: 30px;
+      border-radius: 20px;
+      margin-top: 30px;
+    }
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 99;
+    }
+    img {
+      max-width: 90vw;
+      max-height: 70vh;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+<!-- SECTION 1: Countdown -->
+<section id="section1">
+  <div class="top-text">Wait plz... Something big is coming!</div>
+  <div class="countdown" id="countdown">10</div>
+  <button class="button" style="display:none;" id="nextBtn1" onclick="location.href='#section2'">See the Surprise 🎁</button>
+</section>
+
+<!-- SECTION 2: Letter -->
+<section id="section2">
+  <h1>Happy 15th Birthday Hiba! 🎉💗</h1>
+  <div class="letter-box" onclick="this.classList.add('open')">
+    💌 Click to read your birthday letter
+    <div class="letter-content">
+🌸✨ Happy Birthday to you, Dodi ji! 🎊🎁🎊💝🥳🎉💗
+
+On this very special day, I just want to say — Allah apko hamesha khush rakhe 💖, aur haan, bari ho gai ho 😅🎂🎈. 
+May Allah fulfill all your dreams 🌙💭 and bless you with so much happiness 🥰 that sadness never dares to touch your heart 💗🤗.
+
+You are special, Dodi 💞 — today is your day to shine brighter than ever 💫🌷. 
+Keep smiling, keep glowing, and always stay the beautiful soul you are. 🥀🎀🌸
+    </div>
+  </div>
+  <button class="button" onclick="location.href='#section3'">Next 🎈</button>
+</section>
+
+<!-- SECTION 3: Slideshow -->
+<canvas class="confetti"></canvas>
+<section id="section3">
+  <div id="slideshow">
+    <img id="image" src="1000094498.jpg" alt="Slide">
+    <div class="quote" id="quote">She’s not just a year older, she’s a year bolder ✨💖💅‍♀️💫 Happy 15th, Dodi! 🎐🌸🎀💝</div>
+    <button class="button" onclick="nextSlide()">Next</button>
+  </div>
+  <div class="final-message" id="finalMessage" style="display:none;">
+    ✨ "Talking to you is always the best part of my day 💬💗. Take care of that beautiful smile, and remember — you're more amazing than you realize 🌷🌙. Until next time... stay happy, stay you ⬝🌸." 😊
+  </div>
+</section>
+
+<script>
+  // Countdown
+  let seconds = 10;
+  const countdownEl = document.getElementById("countdown");
+  const nextBtn1 = document.getElementById("nextBtn1");
+  const timer = setInterval(() => {
+    seconds--;
+    countdownEl.textContent = seconds;
+    if (seconds <= 0) {
+      clearInterval(timer);
+      countdownEl.textContent = "🎁";
+      nextBtn1.style.display = "inline-block";
+    }
+  }, 1000);
+
+  // Slideshow logic
+  const images = ["1000094498.jpg", "1000094499.jpg", "1000094500.jpg"];
+  const quotes = [
+    "She’s not just a year older, she’s a year bolder ✨💖💅‍♀️💫 Happy 15th, Dodi! 🎐🌸🎀💝",
+    "Pretty face, pure heart, powerful dreams 💭💗🌙 — that’s you, Dodi 💕👑🌷✨🎂🎈🩵",
+    "Born to shine, slay, and sprinkle magic wherever she goes 💃✨🎉 HBD Queen 👑💅 🎊🌟💋🎀🎁🌸🔥"
+  ];
+  let current = 0;
+
+  function nextSlide() {
+    current++;
+    if (current < images.length) {
+      document.getElementById("image").src = images[current];
+      document.getElementById("quote").innerText = quotes[current];
+      if (current === images.length - 1) {
+        event.target.innerText = "Finish";
+      }
+    } else {
+      document.getElementById("slideshow").style.display = "none";
+      document.getElementById("finalMessage").style.display = "block";
+    }
+  }
+
+  // Confetti hearts animation
+  const canvas = document.querySelector('.confetti');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  let hearts = [];
+
+  function createHeart() {
+    hearts.push({
+      x: Math.random() * canvas.width,
+      y: -20,
+      size: Math.random() * 20 + 10,
+      speed: Math.random() * 2 + 1,
+      alpha: Math.random() * 0.5 + 0.5
+    });
+  }
+
+  function drawHeart(heart) {
+    ctx.fillStyle = `rgba(255, 105, 180, ${heart.alpha})`;
+    ctx.beginPath();
+    ctx.moveTo(heart.x, heart.y);
+    ctx.bezierCurveTo(heart.x - 5, heart.y - 5, heart.x - 10, heart.y + 10, heart.x, heart.y + 15);
+    ctx.bezierCurveTo(heart.x + 10, heart.y + 10, heart.x + 5, heart.y - 5, heart.x, heart.y);
+    ctx.fill();
+  }
+
+  function animateHearts() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hearts.forEach((heart, index) => {
+      heart.y += heart.speed;
+      drawHeart(heart);
+      if (heart.y > canvas.height) hearts.splice(index, 1);
+    });
+    if (Math.random() < 0.3) createHeart();
+    requestAnimationFrame(animateHearts);
+  }
+  animateHearts();
+</script>
+
+</body>
+</html>
